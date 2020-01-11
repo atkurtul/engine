@@ -742,12 +742,12 @@ inline std::ostream& operator << (std::ostream& s, const matrix4<T>& m)
 }
 
 inline matrix4<float> perspective(float fov, float aspect, float n, float f) {
-	float tan = 1 / float(tanf(fov * ct::rad * 0.5f));
-	float fn = 1 / (f - n);
+	float tan = 1.f / float(tanf(fov * ct::rad * 0.5f));
+	float fn = 1.f / (f - n);
 	return{
 		tan * aspect,	0,			0,		 0,
 			0,		tan,			0,		 0,
-			0,		0,		-fn * (f + n),	-1,
+			0,		0,		fn * (f + n),	 1,
 			0,		0,	 -2 * f * n * fn,	 0
 	};
 }
@@ -759,7 +759,7 @@ inline matrix4<float> ortho(float l, float r, float b, float t) {
 		2 * rl,				0,			 0,		0,
 			 0,		   2 * tb,			 0,		0,
 			 0,				0,			 1,		0,
-		-rl * (r + l), -tb * (t + b),			0,		1
+		-rl * (r + l), -tb * (t + b),	 0,		1
 	};
 }
 

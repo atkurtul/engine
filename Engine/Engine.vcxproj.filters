@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\std">
+      <UniqueIdentifier>{6bb30504-4dab-44d1-aab4-5b163b2c5d35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="clock.cpp">
@@ -115,6 +118,54 @@
     </ClInclude>
     <ClInclude Include="obj_loader.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_constants.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_couple.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_map.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_mathf.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_pair.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_poly.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_str.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_vec.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_vmath.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_vmath_base.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_vmath_complex.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_vmath_mat.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_vmath_quaternion.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_vmath_swizz.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xf_vmath_vec.h">
+      <Filter>Resource Files\std</Filter>
+    </ClInclude>
+    <ClInclude Include="std\xfstd.h">
+      <Filter>Resource Files\std</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

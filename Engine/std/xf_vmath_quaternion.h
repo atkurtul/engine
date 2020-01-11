@@ -3,7 +3,8 @@
 
 template<class T>
 struct quaternion {
-	union {
+	union 
+	{
 		T data[4];
 		struct { T x, y, z, w; };
 		struct { T i, j, k, s; };
@@ -112,30 +113,30 @@ inline quaternion<T>::quaternion(const quaternion<T>& q)
 template<class T>
 inline quaternion<T>::quaternion(const matrix3<T>& m)
 {
-	float tr = m(0, 0) + m(1, 1) + m(2, 2);
+	T tr = m(0, 0) + m(1, 1) + m(2, 2);
 	if (tr > 0.f) {
-		float S = 0.5f / sqrt(tr + 1.f);
+		T S = 0.5f / sqrt(tr + 1.f);
 		w = 0.25f / S;
 		x = (m(2, 1) - m(1, 2)) * S;
 		y = (m(0, 2) - m(2, 0)) * S;
 		z = (m(1, 0) - m(0, 1)) * S;
 	}
 	else if (m(0, 0) > m(1, 1) && m(0, 0) > m(2, 2)) {
-		float S = 0.5f / sqrt(1.f + m(0, 0) - m(1, 1) - m(2, 2));
+		T S = 0.5f / sqrt(1.f + m(0, 0) - m(1, 1) - m(2, 2));
 		w = (m(2, 1) - m(1, 2)) * S;
 		x = 0.25f / S;
 		y = (m(0, 1) + m(1, 0)) * S;
 		z = (m(0, 2) + m(2, 0)) * S;
 	}
 	else if (m(1, 1) > m(2, 2)) {
-		float S = 0.5f / sqrt(1.f + m(1, 1) - m(0, 0) - m(2, 2));
+		T S = 0.5f / sqrt(1.f + m(1, 1) - m(0, 0) - m(2, 2));
 		w = (m(0, 2) - m(2, 0)) * S;
 		x = (m(0, 1) + m(1, 0)) * S;
 		y = 0.25f / S;
 		z = (m(1, 2) + m(2, 1)) * S;
 	}
 	else {
-		float S = 0.5f / sqrt(1.f + m(2, 2) - m(0, 0) - m(1, 1));
+		T S = 0.5f / sqrt(1.f + m(2, 2) - m(0, 0) - m(1, 1));
 		w = (m(1, 0) - m(0, 1)) * S;
 		x = (m(0, 2) + m(2, 0)) * S;
 		y = (m(1, 2) + m(2, 1)) * S;
@@ -146,30 +147,30 @@ inline quaternion<T>::quaternion(const matrix3<T>& m)
 template<class T>
 inline quaternion<T>::quaternion(const matrix4<T>& m)
 {
-	float tr = m(0, 0) + m(1, 1) + m(2, 2);
+	T tr = m(0, 0) + m(1, 1) + m(2, 2);
 	if (tr > 0.f) {
-		float S = 0.5f / sqrt(tr + 1.f);
+		T S = 0.5f / sqrt(tr + 1.f);
 		w = 0.25f / S;
 		x = (m(2, 1) - m(1, 2)) * S;
 		y = (m(0, 2) - m(2, 0)) * S;
 		z = (m(1, 0) - m(0, 1)) * S;
 	}
 	else if (m(0, 0) > m(1, 1) && m(0, 0) > m(2, 2)) {
-		float S = 0.5f / sqrt(1.f + m(0, 0) - m(1, 1) - m(2, 2));
+		T S = 0.5f / sqrt(1.f + m(0, 0) - m(1, 1) - m(2, 2));
 		w = (m(2, 1) - m(1, 2)) * S;
 		x = 0.25f / S;
 		y = (m(0, 1) + m(1, 0)) * S;
 		z = (m(0, 2) + m(2, 0)) * S;
 	}
 	else if (m(1, 1) > m(2, 2)) {
-		float S = 0.5f / sqrt(1.f + m(1, 1) - m(0, 0) - m(2, 2));
+		T S = 0.5f / sqrt(1.f + m(1, 1) - m(0, 0) - m(2, 2));
 		w = (m(0, 2) - m(2, 0)) * S;
 		x = (m(0, 1) + m(1, 0)) * S;
 		y = 0.25f / S;
 		z = (m(1, 2) + m(2, 1)) * S;
 	}
 	else {
-		float S = 0.5f / sqrt(1.f + m(2, 2) - m(0, 0) - m(1, 1));
+		T S = 0.5f / sqrt(1.f + m(2, 2) - m(0, 0) - m(1, 1));
 		w = (m(1, 0) - m(0, 1)) * S;
 		x = (m(0, 2) + m(2, 0)) * S;
 		y = (m(1, 2) + m(2, 1)) * S;
@@ -359,10 +360,9 @@ inline vec<T, 3> quaternion<T>::operator *(const base<T, a, b, c>& v) const
 	};
 }
 
-
 inline quaternion<float> axang(float x, float y, float z, float w)
 {
-	float l = 1 / sqrtf(x * x + y * y + z * z) * sinf(w *= 0.5f);
+	float l = 1.f / sqrtf(x * x + y * y + z * z) * sinf(w *= 0.5f);
 	return { x * l, y * l, z * l, cosf(w) };
 }
 

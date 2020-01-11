@@ -47,28 +47,23 @@ struct light
 float near = 1.f, far = 300.f;
 float orth = 250.f;
 mat4 lightPrj = ortho(-orth, orth, -orth, orth, near, far);
-const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
+const unsigned int SHADOW_WIDTH = 6000, SHADOW_HEIGHT = 6000;
 void genFBO(uint* fbo, uint* dm) {
-	unsigned int depthMapFBO;
-	glGenFramebuffers(1, &depthMapFBO);
+	glGenFramebuffers(1, fbo);
 	// create depth texture
-	unsigned int depthMap;
-	glGenTextures(1, &depthMap);
-	glBindTexture(GL_TEXTURE_2D, depthMap);
+	glGenTextures(1, dm);
+	glBindTexture(GL_TEXTURE_2D, *dm);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	// attach depth texture as FBO's depth buffer
-	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, *fbo);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, *dm, 0);
 	glDrawBuffer(GL_NONE);
 	glReadBuffer(GL_NONE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	*fbo = depthMapFBO;
-	*dm = depthMap;
 }
 
 void collide(xfvec<mat4>& arr, xfvec<vec3>& vel, xfvec<mat3>& ang)
@@ -171,16 +166,16 @@ int main()
 		{
 			t2 = 0.2f;
 			mat4 m = axang(ranf(), ranf(), ranf(), ranf() * ct::pi);
-			m.row[3].xyz = cam.pos - cam.dir * 4.f;
+			m.row[3].xyz = cam.pos + cam.dir * 4.f;
 			buff.push(m);
-			vs.push(cam.dir * -8.f);
+			vs.push(cam.dir * 8.f);
 			ang.push(axang(ranf(), ranf(), ranf(), 0.1f));
 		}
 		if (input(key::Right)) {
 			mat4 m = axang(ranf(), ranf(), ranf(), ranf() * ct::pi);
-			m.row[3].xyz = cam.pos - cam.dir * 4.f;
+			m.row[3].xyz = cam.pos + cam.dir * 4.f;
 			buff.push(m);
-			vs.push(cam.dir * -8.f);
+			vs.push(cam.dir * 8.f);
 			ang.push(axang(ranf(), ranf(), ranf(), 0.1f));
 		}
 		{
@@ -253,7 +248,7 @@ int main()
 		t3 -= clock::dt;
 		if (t3 <= 0.f) t3 = 0.2f, fps = 0.f, c = 0;
 
-		glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(GL_TEXTURE0		);
 		glDisable(GL_DEPTH_TEST);
 		ui.renderText(tostr(c / fps), 0, 0);
 		ui.renderText(tostr(buff.size()), window::size.x * 0.9f, 0);
