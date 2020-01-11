@@ -150,6 +150,7 @@
     <ClCompile Include="font.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="mouse.cpp" />
+    <ClCompile Include="obj_loader.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="Source.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp17</LanguageStandard>
@@ -174,6 +175,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="mouse.h" />
+    <ClInclude Include="obj_loader.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="UI.h" />

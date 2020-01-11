@@ -61,7 +61,6 @@ void UI::render()
 void UI::renderText(const xfstr& text, float x, float y, float scale)
 {
 	static float lim = window::size.x - 50.f;
-	glDisable(GL_DEPTH_TEST);
 
 	_sh.use();
 	_font.atlas.bind();

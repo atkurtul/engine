@@ -60,6 +60,9 @@
     <ClCompile Include="a_model.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="obj_loader.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buffer.h">
@@ -108,6 +111,9 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="bone.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="obj_loader.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
